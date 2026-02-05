@@ -1,9 +1,8 @@
-
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
 import type { FC } from "react";
-import img1 from "../../public/frouv-v2/banner/banner1.webp";
+import img1 from "../../public/frouv-v2/banner/Ant-Clipart-removebg-preview.png";
 
 interface FunFactProps {
   title?: string;
@@ -21,7 +20,6 @@ const FunFact: FC<FunFactProps> = ({
   return (
     <div className="w-full max-w-4xl mx-auto px-3 py-4">
       <div className="bg-green-50 border border-green-200 rounded-2xl shadow-sm md:p-6 p-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-
         {/* Image (Mobile first – centered) */}
         <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:col-span-3 mx-auto md:mx-0 order-1 md:order-last">
           <Image

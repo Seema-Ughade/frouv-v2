@@ -532,7 +532,7 @@ useEffect(() => {
                     {chunk.map((pro, idx) => (
                       <div key={idx} className="group  rounded-lg overflow-hidden shadow-sm hover:shadow-md transition relative">
                         <Trendingecotab pro={pro} variant={0} />
-                        {/* Add ProductActions for desktop */}
+                        
                         <div className="absolute left-0 right-0 bottom-2 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                           {/* <ProductActions pro={pro} variant={0} /> */}
                         </div>

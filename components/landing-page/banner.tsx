@@ -83,7 +83,6 @@ const Banner: React.FC = () => {
           {isClient && (
             <Link
               href=""
-              //   href={`/best-deals?category=${bigOffer.slug}&discount=${bigOffer.discount}&brand=${bigOffer.brand}`}
               className="block w-full h-full relative"
             >
               {/* Desktop/Laptop Image */}

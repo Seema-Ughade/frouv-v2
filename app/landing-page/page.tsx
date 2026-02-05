@@ -32,8 +32,6 @@ export default function LandingPage() {
       <EcoFriendlyGifts />
       <EarthQuotesSlider />
       <ExploreOrganicKitchen />
-
-
     </main>
   );
 }

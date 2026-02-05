@@ -35,10 +35,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
         <div className="sticky z-50 top-0">
-          <Navbar />
+          {/* <Navbar /> */}
         </div>
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

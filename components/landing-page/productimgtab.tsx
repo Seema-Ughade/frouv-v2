@@ -18,7 +18,7 @@ export default function ProductImgTab({
 const rawUrl = variantData?.image?.[0]?.url || ""
 
 const imageUrl = rawUrl.startsWith("/")
-  ? rawUrl // local/public image
+  ? rawUrl
   : `${process.env.NEXT_PUBLIC_API_PATH}${rawUrl}`
   const productLink = `/product/${pro?.slug}?variant=${variant}&name=${variantData?.type}`
 

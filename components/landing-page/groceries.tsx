@@ -47,7 +47,7 @@ export default function Groceries() {
               href={`/subcategory/${cate.slug}`}
               className="relative rounded-xl overflow-hidden shadow-md group"
             >
-              {/* Placeholder image with sub_category name */}
+             
               <img
                 src={imageUrl}
                 alt={cate.sub_category}
