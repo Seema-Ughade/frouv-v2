@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import AnnouncementBar from "../AnnouncementBar";
 import CallButton from "./CallButton";
 import Logo from "./Logo";
 import Navlinks from "./NavLinks";
@@ -27,12 +26,9 @@ const Navbar = ({ isLanding, onToggle }: Props) => {
 
   return (
     <>
-      <div className="block sticky z-50 top-0 lg:hidden">
-        <AnnouncementBar />
-      </div>
       <nav
         className={`w-full ${
-          isHome ? "lg:mt-[80px]" : "lg:mt-0"
+          isHome ? "lg:mt-0" : "lg:mt-0"
         } mt-0 lg:fixed top-0 left-0 right-0 z-50 bg-white box-border`}
       >
         <div className="flex items-center justify-between mx-auto max-w-[1440px] lg:h-[96px] h-[64px] px-4 md:px-8">
