@@ -37,7 +37,6 @@ export default function RootLayout({
         <div className="sticky z-50 top-0">
           {/* <NavbarWrapper /> */}
                   <ConditionalNavbar />
-
         </div>
         {children}
         {/* <Footer /> */}
