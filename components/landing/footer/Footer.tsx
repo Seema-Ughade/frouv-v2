@@ -1,7 +1,7 @@
 "use client";
 
 import { HoverButton } from "@/components/ui/Button/button";
-import Logo from "../navbar/Logo";
+import Logo from "../old-navbar/Logo";
 import Link from "next/link";
 
 export default function Footer() {

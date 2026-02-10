@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/landing/navbar/Navbar";
+import Navbar from "@/components/landing/old-navbar/Navbar";
 import NavaWorksPage from "@/components/main-page/NavaWorksPage";
 import LandingPageUI from "@/components/main-page/LandingPageUI";
 
