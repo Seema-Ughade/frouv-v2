@@ -1,7 +1,6 @@
 "use client";
 
 import { HoverButton } from "@/components/ui/Button/button";
-import Logo from "../old-navbar/Logo";
 import Link from "next/link";
 
 export default function Footer() {
@@ -13,7 +12,7 @@ export default function Footer() {
           {/* Left Column - Logo & Copyright */}
           <div className="flex flex-col items-center md:items-start md:col-span-2">
             <div className="mb-8 md:mb-20">
-              <Logo />
+              {/* <Logo /> */}
             </div>
 
             <p className="hidden lg:block text-[14px] md:text-[16px] robotoText text-[#1B1B1B] text-center md:text-left md:pl-5">

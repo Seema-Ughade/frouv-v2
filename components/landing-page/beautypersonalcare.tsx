@@ -40,10 +40,10 @@ export default function BeautyPersonalCare() {
     },
   ];
   return (
-    <section className="w-full shadow-sm ring-1 ring-black/5 rounded-xl p-4">
+    <section className="w-full shadow-sm ring-1 dark:border border-white ring-black/5 rounded-xl p-4">
       {/* Header */}
       <div className="flex items-center justify-between gap-3 mb-6">
-        <h2 className="text-lg text-green-900 sm:text-xl font-semibold tracking-tight">
+        <h2 className="text-lg text-green-900 dark:text-white sm:text-xl font-semibold tracking-tight">
           Beauty & Personal Care
         </h2>
       </div>

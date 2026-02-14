@@ -368,11 +368,11 @@ useEffect(() => {
 
   
   return (
-    <section className="py-10 md:py-9 bg-white">
+    <section className="py-10 md:py-9 dark:m-4 dark:rounded-2xl dark:border border-white dark:bg-black">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8 md:mb-10">
-          <h2 className="flex text-2xl md:text-3xl font-bold text-green-900">
+          <h2 className="flex text-2xl md:text-3xl dark:text-white font-bold text-green-900">
             Explore Organic Home & Kitchen Products
             <span className="text-green-600 ml-2 text-4xl">
               <MdOutlineDoubleArrow />

@@ -509,12 +509,12 @@ useEffect(() => {
 }, [])
 
   return (
-    <section className="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 p-4 sm:p-5">
+    <section className="dark:bg-black dark:border border-white rounded-2xl shadow-sm ring-1 ring-black/5 p-4 sm:p-5">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="flex text-xl md:text-3xl font-bold text-green-900">
+        <h2 className="flex text-xl md:text-3xl dark:text-white font-bold text-green-900">
           Trending Eco-Products
-          <span className="text-green-600 ml-2 text-4xl">
+          <span className="text-green-600 dark:text-white ml-2 text-4xl">
             <MdOutlineDoubleArrow />
           </span>
         </h2>

@@ -28,7 +28,7 @@ export function ServicesSection() {
   return (
     <section className="relative py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-600 mb-12">
+        <p className="text-center dark:text-white text-gray-600 mb-12">
           We're not just another agency. We're your growth partner—combining creative excellence with
           strategic marketing expertise to deliver results that matter.
         </p>

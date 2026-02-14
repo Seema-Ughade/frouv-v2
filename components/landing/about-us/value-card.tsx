@@ -16,8 +16,8 @@ export function ValueCard({ title, description, icon: Icon }: ValueCardProps) {
           </div>
         </div>
         <div className="flex-1">
-          <h3 className="text-[12px] lg:text-[20px] robotoText font-medium text-[#1B1B1B]">{title}</h3>
-          <p className="mt-2 text-[#615F5F] robotoText lg:text-[20px] text-[12px]">{description}</p>
+          <h3 className="text-[12px] dark:text-white lg:text-[20px] robotoText font-medium text-[#1B1B1B]">{title}</h3>
+          <p className="mt-2 text-[#615F5F] dark:text-white robotoText lg:text-[20px] text-[12px]">{description}</p>
         </div>
       </div>
     </div>

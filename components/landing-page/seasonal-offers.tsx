@@ -165,8 +165,8 @@ const SeasonalOffers: React.FC = () => {
   )
 
   return (
-    <section className="container mx-auto px-4 py-6">
-      <h2 className="text-xl md:text-2xl font-bold mb-6 text-green-900">Seasonal Offers</h2>
+    <section className="container dark:border border-white dark:my-4 dark:rounded-2xl mx-auto px-4 py-6">
+      <h2 className="text-xl md:text-2xl dark:text-white  font-bold mb-6 text-green-900">Seasonal Offers</h2>
 
       {loading ? (
         <>

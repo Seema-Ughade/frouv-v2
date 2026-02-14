@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "@/components/main-page/NavbarWrapper";
-import ConditionalNavbar from "@/components/landing-page/ConditionalNavbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,19 +26,29 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
-        <div className="sticky z-50 top-0">
-          {/* <NavbarWrapper /> */}
-                  <ConditionalNavbar />
-        </div>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Sticky Navbar */}
+          <div className="theme-orange">
+            <NavbarWrapper />
+          </div>
+
+          {/* Page Content */}
+          <main>{children}</main>
+        </ThemeProvider>
+
         {/* <Footer /> */}
       </body>
     </html>

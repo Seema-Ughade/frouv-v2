@@ -111,8 +111,8 @@ export default function NewArrivals() {
     product.variants[0].image[0].url;
 
   return (
-    <section className="container mx-auto bg-white rounded-2xl shadow-sm ring-1 ring-black/5 p-4 sm:p-5">
-      <h2 className="text-xl font-bold text-green-900 mb-4 tracking-tight">
+    <section className="container mx-auto dark:bg-black dark:border border-white rounded-2xl shadow-sm ring-1 ring-black/5 p-4 sm:p-5">
+      <h2 className="text-xl font-bold text-green-900 dark:text-white mb-4 tracking-tight">
         New Arrivals
       </h2>
 

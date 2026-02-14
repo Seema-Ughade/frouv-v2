@@ -3,7 +3,7 @@ import HeroBackground from "./HeroBackground";
 
 export function Hero() {
   return (
-    <section className="relative lg:mt-[10px] mt-2 lg:min-h-[580px] flex flex-col items-center justify-center overflow-hidden bg-white lg:pt-0 pt-4 pb-2">
+    <section className="relative lg:mt-[10px] mt-2 lg:min-h-[580px] flex flex-col items-center justify-center overflow-hidden dark:bg-black  lg:pt-0 pt-4 pb-2">
       <HeroBackground />
       <div className="relative z-10 w-full lg:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 text-center">
         {/* Badge */}
@@ -15,11 +15,11 @@ export function Hero() {
         </div>
 
         {/* Description */}
-        <h1 className="text-[#1B1B1B] robotoText text-center w-full lg:w-[1127px] mx-auto robotoText font-semibold lg:text-[64px] text-[32px] mb-4 leading-tight">
+        <h1 className="text-[#1B1B1B] dark:text-white robotoText text-center w-full lg:w-[1127px] mx-auto robotoText font-semibold lg:text-[64px] text-[32px] mb-4 leading-tight">
           We Build <br className="block lg:hidden" /> Brands & Launch Them <br className="block lg:hidden" /> to Market Success </h1>
 
         {/* Description */}
-        <p className="w-full lg:max-w-[1080px] robotoText lg:px-0 px-4 mx-auto robotoText lg:text-[20px] text-[12px] text-[#615F5F] mb-6 mx-auto leading-relaxed">
+        <p className="w-full lg:max-w-[1080px] dark:text-white robotoText lg:px-0 px-4 mx-auto robotoText lg:text-[20px] text-[12px] text-[#615F5F] mb-6 mx-auto leading-relaxed">
           From Design and Brand Identity to Go-to-Market Strategy, we create and execute comprehensive solutions that don't just look great—they drive real business growth and market dominance. </p>
 
         {/* CTA Buttons */}
@@ -69,7 +69,7 @@ export function Hero() {
                 <div className={`${feature.color} p-2 lg:p-3 rounded-full`}>
                   {feature.icon}
                 </div>
-                <p className="text-[#615F5F] robotoText lg:text-[17px] text-[10px] text-center">
+                <p className="text-[#615F5F] dark:text-white robotoText lg:text-[17px] text-[10px] text-center">
                   {feature.label}
                 </p>
               </div>

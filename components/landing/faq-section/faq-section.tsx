@@ -21,7 +21,7 @@ const toggleFAQ = (id: string) => {
   
 
   return (
-    <section className="w-full bg-[#FCFCFC] lg:py-16 py-8 px-6">
+    <section className="w-full dark:bg-black lg:py-16 py-8 px-6">
       {/* Header */}
       <div className="max-w-[1080px] mx-auto mb-12">
         <div className="flex justify-center mb-6">
@@ -33,7 +33,7 @@ const toggleFAQ = (id: string) => {
             </div>
           </div>
         </div>
-        <h2 className="text-[#1B1B1B] font-semibold lg:text-[48px] text-[32px] robotoText text-center lg:mb-12 mb-6">
+        <h2 className="text-[#1B1B1B] dark:text-white font-semibold lg:text-[48px] text-[32px] robotoText text-center lg:mb-12 mb-6">
           All your Questions, Answered
         </h2>
 

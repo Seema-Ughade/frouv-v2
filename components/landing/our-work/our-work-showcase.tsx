@@ -104,7 +104,7 @@ export default function PortfolioShowcase() {
 
 
   return (
-    <section className="w-full bg-white pt-16 px-4">
+    <section className="w-full dark:bg-black pt-16 px-4">
       <div className="max-w-[1096px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -114,7 +114,7 @@ export default function PortfolioShowcase() {
             </div>
           </div>
 
-          <h1 className="text-[#1B1B1B] robotoText font-semibold text-[48px] mb-8 tracking-tight">
+          <h1 className="text-[#1B1B1B] dark:text-white robotoText font-semibold text-[48px] mb-8 tracking-tight">
             Crafted with Purpose
           </h1>
         </div>

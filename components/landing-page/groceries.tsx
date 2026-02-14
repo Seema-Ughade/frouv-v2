@@ -29,10 +29,10 @@ export default function Groceries() {
   ];
 
   return (
-    <section className="w-full shadow-sm ring-1 ring-black/5 rounded-xl p-4">
+    <section className="w-full dark:border border-white shadow-sm ring-1 ring-black/5 rounded-xl p-4">
       {/* Header */}
       <div className="flex items-center justify-between gap-3 mb-2">
-        <h2 className="text-lg text-green-900 sm:text-xl font-semibold tracking-tight">
+        <h2 className="text-lg text-green-900 dark:text-white sm:text-xl font-semibold tracking-tight">
           Groceries
         </h2>
       </div>

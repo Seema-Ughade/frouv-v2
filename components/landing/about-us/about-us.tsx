@@ -14,12 +14,12 @@ export function AboutUs() {
         </div>
 
         {/* Main Title */}
-        <h1 className="mb-4 lg:mb-8 text-center robotoText text-[#1B1B1B] font-semibold text-[32px] lg:text-[48px] tracking-tight ">
+        <h1 className="mb-4 dark:text-white lg:mb-8 text-center robotoText text-[#1B1B1B] font-semibold text-[32px] lg:text-[48px] tracking-tight ">
           Passionate Designers, Powerful Brands
         </h1>
 
         {/* Intro Description */}
-        <p className="max-w-[981px] robotoText w-full text-[#615F5F] lg:text-[20px] text-[12px] mx-auto lg:mb-8 mb-4 text-center">
+        <p className="max-w-[981px] dark:text-white robotoText w-full text-[#615F5F] lg:text-[20px] text-[12px] mx-auto lg:mb-8 mb-4 text-center">
           We're a team of creative professionals dedicated to helping brands
           tell their stories through exceptional design. Our approach combines
           strategic thinking with artistic excellence to deliver solutions that
@@ -28,7 +28,7 @@ export function AboutUs() {
 
         {/* Partnership Statement */}
         <div className="mb-8 text-center md:mb-8">
-          <p className="max-w-[981px] robotoText w-full mx-auto lg:px-0 px-5 text-[#1B1B1B] text-[12px] lg:text-[20px] font-medium ">
+          <p className="max-w-[981px] dark:text-white robotoText w-full mx-auto lg:px-0 px-5 text-[#1B1B1B] text-[12px] lg:text-[20px] font-medium ">
             From startups to established enterprises, we've partnered with
             diverse clients to create memorable brand experiences that stand the
             test of time.

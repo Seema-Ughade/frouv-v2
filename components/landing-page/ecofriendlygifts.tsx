@@ -492,9 +492,9 @@ export default function EcoFriendlyGifts() {
     setLoading(false);
   }, []);
   return (
-    <section className="container mx-auto bg-white p-4 sm:p-5 px-4 md:px-6 lg:px-8">
+    <section className="container dark:border dark:rounded-2xl border-white mx-auto dark:bg-black p-4 sm:p-5 px-4 md:px-6 lg:px-8">
       {/* Header */}
-      <h2 className="flex text-2xl md:text-3xl font-bold text-green-900 mb-8 tracking-tight">
+      <h2 className="flex text-2xl dark:text-white md:text-3xl font-bold text-green-900 mb-8 tracking-tight">
         Discover Eco-friendly Gifts & Toys
         <span className="text-green-600 ml-2 text-4xl">
           <MdOutlineDoubleArrow />
