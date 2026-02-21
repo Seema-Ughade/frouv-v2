@@ -1,138 +1,181 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useRef } from "react"
 
-import first from "../../public/frouv-v2/banner/banner1.webp";
-import second from "../../public/frouv-v2/banner/banner2.png";
-import third from "../../public/frouv-v2/banner/banner3.png";
-import four from "../../public/frouv-v2/banner/banner4.webp";
-import heroDesktop from "../../public/frouv-v2/banner/banner5.png";
-import heroMobile from "../../public/frouv-v2/banner/banner5.png";
+/* ---------- IMAGES ---------- */
+const desktopImages = [
+  "/frouv-v2/Banner/Banner_1.png",
+  "/frouv-v2/Banner/Banner_2.png",
+  "/frouv-v2/Banner/Banner_3.png",
+  "/frouv-v2/Banner/Banner_4.png",
+  "/frouv-v2/Banner/Banner_5.png",
+  "/frouv-v2/Banner/Banner_6.png",
+  "/frouv-v2/Banner/Banner_7.png",
+  "/frouv-v2/Banner/Banner_8.png",
+]
 
-const offers = [
-  {
-    id: 0,
-    title: "Neemtoys Kids Collection",
-    imageDesktop: heroDesktop,
-    imageMobile: heroMobile,
-    discount: "20",
-    brand: "neemtoys®",
-    category: "Toys & Games",
-    slug: "toys-games",
-    type: "big",
-  },
-  {
-    id: 1,
-    title: "Organic Anand Grocery Deals",
-    image: second,
-    discount: "20",
-    brand: "Organic Anand",
-    category: "Groceries",
-    slug: "Groceries",
-    type: "small",
-  },
-  {
-    id: 2,
-    title: "Monsoon Skincare Sale",
-    image: first,
-    discount: "20",
-    brand: "Shiva Organic",
-    category: "Beauty & Personal Care",
-    slug: "beauty-personal-care",
-    type: "small",
-  },
-  {
-    id: 3,
-    title: "YOGEZ Organic Wellness Week",
-    image: third,
-    discount: "10",
-    brand: "YOGEZ",
-    category: "Beauty & Personal Care",
-    slug: "beauty-personal-care",
-    type: "small",
-  },
-  {
-    id: 4,
-    title: "Shiva Organic Groceries",
-    image: four,
-    discount: "20",
-    brand: "Shiva Organic",
-    category: "Groceries",
-    slug: "Groceries",
-    type: "small",
-  },
-];
+const mobileImages = [
+  "/frouv-v2/Banner/mobile_banner/1st_banner.png",
+  "/frouv-v2/Banner/mobile_banner/2nd_banner.png",
+  "/frouv-v2/Banner/mobile_banner/3rd_banner.png",
+  "/frouv-v2/Banner/mobile_banner/4th_banner.png",
+  "/frouv-v2/Banner/mobile_banner/5th_banner.png",
+  "/frouv-v2/Banner/mobile_banner/6th_banner.png",
+  "/frouv-v2/Banner/mobile_banner/7th_banner.png",
+  "/frouv-v2/Banner/mobile_banner/8th_banner.png",
+]
 
-const Banner: React.FC = () => {
-  const [isClient, setIsClient] = useState(false);
+export default function HeroBanner() {
+  const desktopRef = useRef<HTMLDivElement | null>(null)
+  const mobileRef = useRef<HTMLDivElement | null>(null)
 
+  const desktopIndex = useRef(1)
+  const mobileIndex = useRef(1)
+
+  const isInteracting = useRef(false)
+  const desktopTimer = useRef<NodeJS.Timeout | null>(null)
+  const mobileTimer = useRef<NodeJS.Timeout | null>(null)
+
+  /* ---------- DUPLICATE FIRST & LAST SLIDE ---------- */
+  const desktopSlides = [
+    desktopImages[desktopImages.length - 1],
+    ...desktopImages,
+    desktopImages[0],
+  ]
+
+  const mobileSlides = [
+    mobileImages[mobileImages.length - 1],
+    ...mobileImages,
+    mobileImages[0],
+  ]
+
+  /* ---------- INIT SCROLL TO FIRST REAL SLIDE ON MOUNT ---------- */
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    if (desktopRef.current) {
+      desktopRef.current.scrollTo({
+        left: desktopRef.current.clientWidth,
+        behavior: "auto",
+      })
+    }
 
-  const bigOffer = offers.find((o) => o.type === "big");
-  const smallOffers = offers.filter((o) => o.type === "small");
+    if (mobileRef.current) {
+      mobileRef.current.scrollTo({
+        left: mobileRef.current.clientWidth,
+        behavior: "auto",
+      })
+    }
+  }, [])
+
+  /* ---------- AUTO SCROLL ---------- */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isInteracting.current) return
+
+      if (desktopRef.current) {
+        desktopIndex.current += 1
+        desktopRef.current.scrollTo({
+          left: desktopIndex.current * desktopRef.current.clientWidth,
+          behavior: "smooth",
+        })
+      }
+
+      if (mobileRef.current) {
+        mobileIndex.current += 1
+        mobileRef.current.scrollTo({
+          left: mobileIndex.current * mobileRef.current.clientWidth,
+          behavior: "smooth",
+        })
+      }
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  /* ---------- SCROLL END HANDLER ---------- */
+  const handleScrollEnd = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    indexRef: React.MutableRefObject<number>,
+    slides: string[]
+  ) => {
+    if (!ref.current) return
+
+    const width = ref.current.clientWidth
+    const scrollLeft = ref.current.scrollLeft
+    let index = Math.round(scrollLeft / width)
+
+    // Handle forward reset
+    if (index >= slides.length - 1) {
+      indexRef.current = 1
+      ref.current.scrollTo({ left: width, behavior: "auto" })
+    }
+    // Handle backward reset
+    else if (index <= 0) {
+      indexRef.current = slides.length - 2
+      ref.current.scrollTo({ left: indexRef.current * width, behavior: "auto" })
+    } else {
+      indexRef.current = index
+    }
+
+    isInteracting.current = false
+  }
+
+  /* ---------- WRAPPER FOR SCROLL EVENT WITH MOMENTUM FIX ---------- */
+  const handleScroll = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    indexRef: React.MutableRefObject<number>,
+    slides: string[],
+    timerRef: React.MutableRefObject<NodeJS.Timeout | null>
+  ) => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => {
+      handleScrollEnd(ref, indexRef, slides)
+    }, 100) // small delay to wait for momentum
+  }
 
   return (
-    <section className="max-w-screen-xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-      {/* Left Large Banner */}
-      {bigOffer && (
-        <div className="sm:col-span-2 relative h-52 sm:h-72 md:h-72 lg:h-[420px] rounded-2xl overflow-hidden shadow-sm ring-1 ring-black/10">
-          {isClient && (
-            <Link
-              href=""
-              className="block w-full h-full relative"
-            >
-              {/* Desktop/Laptop Image */}
-              <Image
-                src={bigOffer.imageDesktop!}
-                alt={bigOffer.title}
-                fill
-                priority
-                className="hidden md:block object-fill"
-              />
-
-              {/* Mobile / Tablet Image */}
-              <Image
-                src={bigOffer.imageMobile!}
-                alt={bigOffer.title}
-                fill
-                priority
-                className="block md:hidden object-fill"
-              />
-            </Link>
-          )}
-        </div>
-      )}
-
-      {/* Right Side 2x2 Grid Banner */}
-      <div className="sm:col-span-1 grid grid-cols-2 grid-rows-2 gap-3 h-96 sm:h-72 md:h-72 lg:h-[420px]">
-        {smallOffers.map((offer) => (
-          <Link
-            key={offer.id}
-            href={`/best-deals?category=${offer.slug}&discount=${offer.discount}&brand=${offer.brand}`}
-            className="relative rounded-xl overflow-hidden shadow-sm ring-1 ring-black/10 group"
-          >
-            <Image
-              src={offer.image!}
-              alt={offer.title}
-              fill
-              className="object-cover md:transition-transform duration-500 md:group-hover:scale-110"
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-2 md:opacity-0 md:group-hover:opacity-100 md:transition duration-300">
-              <p className="text-white text-sm font-medium">{offer.title}</p>
-              <span className="mt-1 bg-green-600 text-white text-xs px-2 py-1 rounded-full">
-                {offer.discount}% OFF
-              </span>
+    <>
+      {/* ================= DESKTOP ================= */}
+      <section className="hidden lg:block w-full h-screen overflow-hidden">
+        <div
+          ref={desktopRef}
+          className="flex h-full w-full overflow-x-scroll snap-x snap-mandatory no-scrollbar"
+          onScroll={() =>
+            handleScroll(desktopRef, desktopIndex, desktopSlides, desktopTimer)
+          }
+          onMouseDown={() => (isInteracting.current = true)}
+          onTouchStart={() => (isInteracting.current = true)}
+        >
+          {desktopSlides.map((img, i) => (
+            <div key={i} className="relative min-w-full h-full snap-center">
+              <img src={img} alt="" className="w-full h-full object-fill" />
             </div>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-};
+          ))}
+        </div>
+      </section>
 
-export default Banner;
+      {/* ================= MOBILE ================= */}
+      <section className="lg:hidden w-full">
+        <div
+          ref={mobileRef}
+          className="flex w-full h-[200px] overflow-x-scroll snap-x snap-mandatory no-scrollbar"
+          onScroll={() =>
+            handleScroll(mobileRef, mobileIndex, mobileSlides, mobileTimer)
+          }
+          onTouchStart={() => (isInteracting.current = true)}
+          onTouchEnd={() => {
+            // wait for swipe momentum to finish before resuming auto-scroll
+            setTimeout(() => {
+              handleScrollEnd(mobileRef, mobileIndex, mobileSlides)
+            }, 50)
+          }}
+        >
+          {mobileSlides.map((img, i) => (
+            <div key={i} className="relative min-w-full h-full snap-center">
+              <img src={img} alt="" className="w-full h-full object-fill" />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  )
+}

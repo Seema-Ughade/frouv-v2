@@ -1,37 +1,38 @@
 import Banner from "@/components/landing-page/banner";
-import BeautyPersonalCare from "@/components/landing-page/beautypersonalcare";
-import EarthQuotesSlider from "@/components/landing-page/earthquotesslider";
+import BundleOffer from "@/components/landing-page/BundleOffer";
+import DiscoverMore from "@/components/landing-page/DiscoverMore";
 import EcoFriendlyGifts from "@/components/landing-page/ecofriendlygifts";
-import FunFact from "@/components/landing-page/funfact";
+import TopSelling from "@/components/landing-page/TopSelling";
 import Groceries from "@/components/landing-page/groceries";
 import NewArrivals from "@/components/landing-page/new-arrivals";
-import SeasonalOffers from "@/components/landing-page/seasonal-offers";
+import FeaturesSection from "@/components/landing-page/FeaturesSection";
 import Trending from "@/components/landing-page/trending";
-import ExploreOrganicKitchen from "@/components/landing-page/exploreorganickitchen";
+import BestSellers from "@/components/landing-page/BestSellers";
+import SeasonalProduct from "../landing-page/SeasonalProduct";
+import ExclusiveDeals from "../landing-page/ExclusiveDeals";
+import CategoryNav from "../landing-page/CategoryNav";
+import JourneyTimeline from "../landing-page/journey-timeline";
 
 const LandingPageUI = () => {
   return (
-    <main className="w-full lg:mt-[10px] ">
+    <main className="w-full dark:bg-[#0a0a0a] lg:mt-[10px]">
+      <CategoryNav/>
       <Banner />
-      <div className="container mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <Groceries />
-          <div className="lg:col-span-2">
-            <NewArrivals />
-          </div>
-        </div>
-        <SeasonalOffers />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
-          <div className="lg:col-span-2">
-            <Trending />
-          </div>
-          <BeautyPersonalCare />
-        </div>
+      <div className="container mx-auto p-1 lg:p-4">
+        <FeaturesSection />
+        <NewArrivals />
+        <Groceries />
+        <EcoFriendlyGifts />
+        <BestSellers />
+        <Trending />
+        <BundleOffer />
+        <DiscoverMore />
+        <TopSelling />
+        <JourneyTimeline />
+        {/* <Productactions /> */}
+        <SeasonalProduct />
+        <ExclusiveDeals />
       </div>
-      <FunFact />
-      <EcoFriendlyGifts />
-      <EarthQuotesSlider />
-      <ExploreOrganicKitchen />
     </main>
   );
 };

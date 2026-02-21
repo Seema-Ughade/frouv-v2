@@ -1,67 +1,89 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { FaRegHeart } from "react-icons/fa";
+import { FaInfinity } from "react-icons/fa6";
+import { IoEyeOutline } from "react-icons/io5";
+
+type Product = {
+  id: number;
+  img: string;
+  title: string;
+  price: string;
+};
+
+const products: Product[] = [
+  { id: 1, img: "/frouv-v2/demo-product/p-5.jpg", title: "Pure Cold-Pressed Oil and Ghee", price: "310" },
+  { id: 2, img: "/frouv-v2/demo-product/p-4.webp", title: "Nutritious Health Food Super Mix", price: "310.55" },
+  { id: 3, img: "/frouv-v2/demo-product/p-1.png", title: "Premium Indian Garam Masala Spice", price: "948.95" },
+  { id: 4, img: "/frouv-v2/demo-product/p-2.jpg", title: "Assorted Healthy Dry Fruits Mix", price: "452.85" },
+  { id: 5, img: "/frouv-v2/demo-product/p-3.webp", title: "Organic Fine Flour and Suji", price: "450" },
+  { id: 6, img: "/frouv-v2/demo-product/p-6.jpg", title: "High-Quality Indian Pulses and Dal", price: "350" },
+];
+
 export default function Groceries() {
-  const itemsToRender = [
-    {
-      id: 1,
-      sub_category: "Fruits & Vegetables",
-      slug: "fruits-vegetables",
-      imageUrl: "/frouv-v2/banner/banner1.webp",
-    },
-    {
-      id: 2,
-      sub_category: "Dairy Products",
-      slug: "dairy-products",
-      imageUrl: "/frouv-v2/banner/banner2.png",
-    },
-    {
-      id: 3,
-      sub_category: "Snacks",
-      slug: "snacks",
-      imageUrl: "/frouv-v2/banner/banner3.png",
-    },
-    {
-      id: 4,
-      sub_category: "Beverages",
-      slug: "beverages",
-      imageUrl: "/frouv-v2/banner/banner4.webp",
-    },
-  ];
-
   return (
-    <section className="w-full dark:border border-white shadow-sm ring-1 ring-black/5 rounded-xl p-4">
-      {/* Header */}
-      <div className="flex items-center justify-between gap-3 mb-2">
-        <h2 className="text-lg text-green-900 dark:text-white sm:text-xl font-semibold tracking-tight">
-          Groceries
-        </h2>
-      </div>
+    <section className="w-full bg-white dark:bg-[#0a0a0a] py-8 lg:py-14">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between mb-5 lg:mb-10">
+          <h2 className="text-3xl font-bold text-black dark:text-white">
+            Groceries
+          </h2>
+          <Button variant="outline" className="rounded-full px-6">
+            View All
+          </Button>
+        </div>
 
-      <div className="grid grid-cols-2 grid-rows-2 gap-3 h-[350px] sm:h-[460px] md:h-[200px] lg:h-[460px] md:grid-cols-4 md:grid-rows-1 lg:grid-cols-2 lg:grid-rows-2">
-        {itemsToRender.map((cate) => {
-          const imageUrl = cate.imageUrl;
+<div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3">          {products.map((product) => {
+            return (
+              <Card
+                key={product.id}
+                className="group relative overflow-hidden min-w-[280px] md:min-w-0 bg-white dark:bg-gray-700 border-none rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={product.img}
+                    alt={product.title}
+                    className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
 
-          return (
-            <a
-              key={cate.id}
-              href={`/subcategory/${cate.slug}`}
-              className="relative rounded-xl overflow-hidden shadow-md group"
-            >
-             
-              <img
-                src={imageUrl}
-                alt={cate.sub_category}
-                className="w-full h-full object-cover  "
-              />
-              {/* Overlay with name */}
-              <div className="pointer-events-none absolute inset-x-1 bottom-1">
-                <div className="rounded-full px-2 py-1 text-[11px] sm:text-[11px] md:text-sm lg:text-sm text-center text-green-700 sm:text-xs font-medium shadow-sm bg-white/85 backdrop-blur">
-                  {cate.sub_category}
+                  {/* Top Icons */}
+                  <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition">
+                    <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow cursor-pointer hover:scale-110 transition">
+                      <FaRegHeart className="text-lg hover:text-red-500" />
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow cursor-pointer hover:scale-110 transition">
+                      <FaInfinity className="text-lg" />
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow cursor-pointer hover:scale-110 transition">
+                      <IoEyeOutline className="text-lg" />
+                    </div>
+                  </div>
+
+                  {/* Bottom Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300 p-4">
+                    <Button className="w-full rounded-xl text-white">Add To Cart</Button>
+                  </div>
                 </div>
-              </div>
-            </a>
-          );
-        })}
+
+                <CardContent className="p-5">
+                  <h3 className="text-sm font-semibold hover:text-[#78B13F] text-black dark:text-white line-clamp-2 mb-3">
+                    {product.title}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#78B13F] hover:text-[#78B13F] dark:text-white text-sm font-bold">
+                      ₹{product.price}
+                    </span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      Free Delivery
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { ServiceCardsGrid } from "@/components/landing/service-card/service-card
 
 export default function Service() {
   return (
-    <main className=" dark:bg-black">
+    <main className=" dark:bg-[#0a0a0a]">
       {/* Hero Section */}
       <section className="w-full py-1 px-4 md:py-10">
         <div className="max-w-[1440px] mx-auto">

@@ -1,6 +1,6 @@
 "use client";
 
-import { HoverButton } from "@/components/ui/Button/button";
+import { HoverButton } from "@/components/ui/hover-button";
 import React from "react";
 
 import { useState } from "react";

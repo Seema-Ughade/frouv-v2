@@ -1,540 +1,157 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { Product } from "@/app/models/product";
-import Ecogiftstab from "./ecogiftstab";
-import { MdOutlineDoubleArrow } from "react-icons/md";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { FaRegHeart } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 
-export default function EcoFriendlyGifts() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+type Product = {
+  id: number;
+  img: string;
+  title: string;
+  price: string;
+};
+const products: Product[] = [
+  { id: 1, img: "/frouv-v2/demo-product/p-1.png", title: "Premium Indian Garam Masala Spice", price: "948.95" },
+  { id: 2, img: "/frouv-v2/demo-product/p-2.jpg", title: "Assorted Healthy Dry Fruits Mix", price: "452.85" },
+  { id: 3, img: "/frouv-v2/demo-product/p-3.webp", title: "Organic Fine Flour and Suji", price: "450" },
+  { id: 4, img: "/frouv-v2/demo-product/p-4.webp", title: "Nutritious Health Food Super Mix", price: "310.55" },
+  { id: 5, img: "/frouv-v2/demo-product/p-5.jpg", title: "Pure Cold-Pressed Oil and Ghee", price: "310" },
+  { id: 6, img: "/frouv-v2/demo-product/p-6.jpg", title: "High-Quality Indian Pulses and Dal", price: "350" },
+  { id: 7, img: "/frouv-v2/demo-product/p-7.jpg", title: "High-Quality Indian Dal", price: "450" },
+  { id: 8, img: "/frouv-v2/demo-product/p-8.jpg", title: "High-Quality Indian Pulses and Dal", price: "350" },
+  { id: 9, img: "/frouv-v2/demo-product/p-9.webp", title: "High-Quality Indian Dal", price: "450" },
+];
 
-  const category = "Discover Eco-friendly Gifts & Toys";
-  const encodedCategory = encodeURIComponent(category);
-
-  const DUMMY_ECO_GIFTS: Product[] = [
-    {
-      _id: "eco-1",
-      documentId: "eco-doc-1",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 1,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-
-    {
-      _id: "eco-2",
-      documentId: "eco-doc-2",
-      name: "Reusable Eco Gift Box",
-      slug: "reusable-eco-gift-box",
-      sellerId: "seller-eco-2",
-      seller: "Green Gifting",
-      shopName: "Green Gifting Hub",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco Gifts",
-      subCategorySlug: "eco-gifts",
-      brand: "EcoWrap",
-      description: "Reusable eco-friendly gift packaging box.",
-      features: ["Reusable", "Plastic Free"],
-      speciality: "Eco Gift",
-      pkginfo: "1 Box",
-      type: "Gift",
-      countryorigin: "India",
-      exchange: "Yes",
-      rating: 4.3,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 1,
-          type: "Medium",
-          sku: "ECO-BOX-1",
-          stock: 40,
-          price: "299",
-          oldprice: "399",
-          discount: "25%",
-          images: ["/frouv-v2/banner/banner2.png"],
-          image: [{ url: "/frouv-v2/banner/banner2.png" }],
-          originalPrice: 399,
-          sale_price: "299",
-          net_product_price: "299",
-        },
-      ],
-    },
-
-    {
-      _id: "eco-3",
-      documentId: "eco-doc-3",
-      name: "Organic Cotton Soft Toy",
-      slug: "organic-cotton-soft-toy",
-      sellerId: "seller-eco-3",
-      seller: "Nature Kids",
-      shopName: "Nature Kids Store",
-      category: "Toys",
-      categorySlug: "toys",
-      subCategory: "Eco Toys",
-      subCategorySlug: "eco-toys",
-      brand: "SoftGreen",
-      description: "Soft toy made from organic cotton.",
-      features: ["Organic Cotton", "Safe for Kids"],
-      speciality: "Eco Toy",
-      pkginfo: "1 Toy",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.8,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 1,
-          type: "Small",
-          sku: "COTTON-TOY-1",
-          stock: 18,
-          price: "649",
-          oldprice: "799",
-          discount: "19%",
-          images: ["/frouv-v2/banner/banner3.png"],
-          image: [{ url: "/frouv-v2/banner/banner3.png" }],
-          originalPrice: 799,
-          sale_price: "649",
-          net_product_price: "649",
-        },
-      ],
-    },
-    {
-      _id: "eco-4",
-      documentId: "eco-doc-4",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 4,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-
-    {
-      _id: "eco-5",
-      documentId: "eco-doc-4",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 5,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-
-    {
-      _id: "eco-6",
-      documentId: "eco-doc-4",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 6,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-
-    {
-      _id: "eco-4",
-      documentId: "eco-doc-4",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 4,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-    {
-      _id: "eco-4",
-      documentId: "eco-doc-4",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 4,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-    {
-      _id: "eco-2",
-      documentId: "eco-doc-2",
-      name: "Reusable Eco Gift Box",
-      slug: "reusable-eco-gift-box",
-      sellerId: "seller-eco-2",
-      seller: "Green Gifting",
-      shopName: "Green Gifting Hub",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco Gifts",
-      subCategorySlug: "eco-gifts",
-      brand: "EcoWrap",
-      description: "Reusable eco-friendly gift packaging box.",
-      features: ["Reusable", "Plastic Free"],
-      speciality: "Eco Gift",
-      pkginfo: "1 Box",
-      type: "Gift",
-      countryorigin: "India",
-      exchange: "Yes",
-      rating: 4.3,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 1,
-          type: "Medium",
-          sku: "ECO-BOX-1",
-          stock: 40,
-          price: "299",
-          oldprice: "399",
-          discount: "25%",
-          images: ["/frouv-v2/banner/banner2.png"],
-          image: [{ url: "/frouv-v2/banner/banner2.png" }],
-          originalPrice: 399,
-          sale_price: "299",
-          net_product_price: "299",
-        },
-      ],
-    },
-
-    {
-      _id: "eco-3",
-      documentId: "eco-doc-3",
-      name: "Organic Cotton Soft Toy",
-      slug: "organic-cotton-soft-toy",
-      sellerId: "seller-eco-3",
-      seller: "Nature Kids",
-      shopName: "Nature Kids Store",
-      category: "Toys",
-      categorySlug: "toys",
-      subCategory: "Eco Toys",
-      subCategorySlug: "eco-toys",
-      brand: "SoftGreen",
-      description: "Soft toy made from organic cotton.",
-      features: ["Organic Cotton", "Safe for Kids"],
-      speciality: "Eco Toy",
-      pkginfo: "1 Toy",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.8,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 1,
-          type: "Small",
-          sku: "COTTON-TOY-1",
-          stock: 18,
-          price: "649",
-          oldprice: "799",
-          discount: "19%",
-          images: ["/frouv-v2/banner/banner3.png"],
-          image: [{ url: "/frouv-v2/banner/banner3.png" }],
-          originalPrice: 799,
-          sale_price: "649",
-          net_product_price: "649",
-        },
-      ],
-    },
-    {
-      _id: "eco-4",
-      documentId: "eco-doc-4",
-      name: "Eco Bamboo Toy Set",
-      slug: "eco-bamboo-toy-set",
-      sellerId: "seller-eco-1",
-      seller: "Eco World",
-      shopName: "Eco World Store",
-      category: "Gifts",
-      categorySlug: "gifts",
-      subCategory: "Eco-friendly Toys",
-      subCategorySlug: "eco-toys",
-      brand: "GreenPlay",
-      description: "Safe, eco-friendly bamboo toys for kids.",
-      features: ["Bamboo", "Non-toxic", "Eco-friendly"],
-      speciality: "Sustainable Toy",
-      pkginfo: "Toy Set",
-      type: "Toy",
-      countryorigin: "India",
-      exchange: "No",
-      rating: 4.6,
-      verification: "verified",
-      status: "active",
-      createdAt: new Date().toISOString(),
-
-      variants: [
-        {
-          id: 4,
-          type: "Standard",
-          sku: "BAMBOO-TOY-1",
-          stock: 25,
-          price: "799",
-          oldprice: "999",
-          discount: "20%",
-          images: ["/frouv-v2/banner/banner1.webp"],
-          image: [{ url: "/frouv-v2/banner/banner1.webp" }],
-          originalPrice: 999,
-          sale_price: "799",
-          net_product_price: "799",
-        },
-      ],
-    },
-  ];
-
-  useEffect(() => {
-    setLoading(true);
-
-    const shuffled = [...DUMMY_ECO_GIFTS].sort(() => Math.random() - 0.5);
-    setProducts(shuffled.slice(0, 10));
-
-    setLoading(false);
-  }, []);
+export default function FeaturedProductsSplit() {
+  const leftProducts = products.slice(0, 3);
+  const rightProducts = products.slice(3, 9);
   return (
-    <section className="container dark:border dark:rounded-2xl border-white mx-auto dark:bg-black p-4 sm:p-5 px-4 md:px-6 lg:px-8">
-      {/* Header */}
-      <h2 className="flex text-2xl dark:text-white md:text-3xl font-bold text-green-900 mb-8 tracking-tight">
-        Discover Eco-friendly Gifts & Toys
-        <span className="text-green-600 ml-2 text-4xl">
-          <MdOutlineDoubleArrow />
-        </span>
-      </h2>
-
-      {/* Grid Container - Responsive: 2 cols mobile/tablet, 3 cols small desktop, 4 cols desktop, 5 cols large desktop */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {loading ? (
-          
-          Array.from({ length: 10 }).map((_, i) => (
-            <div
-              key={i}
-              className="border rounded-lg overflow-hidden shadow-sm animate-pulse"
+    <section className="w-full bg-white dark:bg-[#0a0a0a] py-14">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-10 text-black dark:text-white">
+          Trending This Week - Eco-Friendly Gifts
+        </h2>
+        {/* MOBILE HORIZONTAL SCROLL */}
+        <div className="lg:hidden flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+          {products.map((product, i) => (
+            <Card
+              key={product.id ?? i}
+              className="min-w-[260px] py-0 bg-white dark:bg-gray-700 border-none rounded-2xl shadow-md"
             >
-              <div className="w-full h-44 bg-gray-300"></div>
-              <div className="p-2 ">
-                <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
+              <div className="h-60 overflow-hidden">
+                <img
+                  src={product.img}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-          ))
-        ) : products.length > 0 ? (
-          products.map((pro, index) => (
-            <div key={`${pro._id}-${index}`} className="w-full group relative">
-              <Ecogiftstab pro={pro} variant={0} width={0} height={0} />
-              {/* Add ProductActions component */}
-              <div className="absolute left-0 right-0 bottom-2 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                {/* <ProductActions pro={pro} variant={0} /> */}
-              </div>
-            </div>
-          ))
-        ) : (
-          // Empty state
-          <div className="col-span-full text-center py-12">
-            <div className="text-gray-500 text-lg mb-2">No products found</div>
-            <div className="text-gray-400 text-sm">
-              Try refreshing the page or check back later
-            </div>
+
+              <CardContent className="p-4">
+                <h3 className="text-sm font-semibold text-black dark:text-white line-clamp-2 mb-2">
+                  {product.title}
+                </h3>
+                <div className="flex items-center justify-between">
+                  <span className="text-green-900 dark:text-green-400 font-bold">
+                    ₹{product.price}
+                  </span>
+                  <Button size="sm" className="rounded-full">
+                    Buy now
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="hidden lg:grid lg:grid-cols-2 gap-10">
+          {/* LEFT LARGE FEATURE */}
+          <div className="space-y-12">
+            {leftProducts.map((product, i) => {
+              return (
+                <Card
+                  key={product.id ?? i}
+                  className="flex flex-col md:flex-row bg-white dark:bg-gray-700 border-none rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition"
+                >
+                  <div className="relative md:w-1/2 h-64 md:h-auto overflow-hidden group">
+                    <img
+                      src={product.img}
+                      alt={product.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    />
+                    <Badge className="absolute top-4 left-4 bg-black text-white">
+                      Sale
+                    </Badge>
+                  </div>
+
+                  <CardContent className="md:w-1/2 p-6 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold hover:text-[#78B13F] text-black dark:text-white mb-3 line-clamp-2">
+                        {product.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        Premium quality product with modern design and best
+                        performance.
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-green-900 dark:text-green-400 font-bold text-xl">
+                        ₹{product.price}
+                      </span>
+                      <Button size="sm" className="rounded-full px-6">
+                        Buy now
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
-        )}
+
+          {/* RIGHT SMALL GRID */}
+          <div className="grid sm:grid-cols-2 gap-6">
+            {rightProducts.map((product, i) => {
+              return (
+                <Card
+                  key={product.id ?? i}
+                  className="group relative bg-white dark:bg-gray-700 py-0 border-none rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition"
+                >
+                  <div className="relative overflow-hidden h-64">
+                    <img
+                      src={product.img}
+                      alt={product.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    />
+
+                    <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                      <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow cursor-pointer">
+                        <FaRegHeart className="text-sm hover:text-red-500" />
+                      </div>
+                      <div className="bg-white dark:bg-gray-800 p-2 rounded-full shadow cursor-pointer">
+                        <IoEyeOutline className="text-sm" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <CardContent className="p-4">
+                    <h3 className="text-sm font-semibold hover:text-[#78B13F] text-black dark:text-white line-clamp-2 mb-3">
+                      {product.title}
+                    </h3>
+                    <div className="flex items-center justify-between">
+                      <span className="text-green-900 dark:text-green-400 font-bold">
+                        ₹{product.price}
+                      </span>
+                      <Button size="sm" className="rounded-full">
+                        Buy now
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

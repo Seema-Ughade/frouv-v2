@@ -21,7 +21,7 @@ const toggleFAQ = (id: string) => {
   
 
   return (
-    <section className="w-full dark:bg-black lg:py-16 py-8 px-6">
+    <section className="w-full dark:bg-[#0a0a0a] lg:py-16 py-8 px-6">
       {/* Header */}
       <div className="max-w-[1080px] mx-auto mb-12">
         <div className="flex justify-center mb-6">

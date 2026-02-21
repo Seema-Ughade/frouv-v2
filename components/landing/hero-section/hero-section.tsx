@@ -1,9 +1,9 @@
-import { HoverButton } from "@/components/ui/Button/button";
+import { HoverButton } from "@/components/ui/hover-button";
 import HeroBackground from "./HeroBackground";
 
 export function Hero() {
   return (
-    <section className="relative lg:mt-[10px] mt-2 lg:min-h-[580px] flex flex-col items-center justify-center overflow-hidden dark:bg-black  lg:pt-0 pt-4 pb-2">
+    <section className="relative lg:mt-[10px] mt-2 lg:min-h-[580px] flex flex-col items-center justify-center overflow-hidden dark:bg-[#0a0a0a]  lg:pt-0 pt-4 pb-2">
       <HeroBackground />
       <div className="relative z-10 w-full lg:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-0 text-center">
         {/* Badge */}

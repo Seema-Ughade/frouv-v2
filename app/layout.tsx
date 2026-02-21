@@ -41,7 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Sticky Navbar */}
-          <div className="theme-orange">
+          <div className="">
             <NavbarWrapper />
           </div>
 
